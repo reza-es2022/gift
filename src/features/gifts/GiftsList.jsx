@@ -28,7 +28,8 @@ function GiftsList() {
       gifts.filter((item) => {
         const job = gift.job ? item.job === gift.job : true;
         const sex = gift.sex ? item.sex === gift.sex : true;
-        const age = item.age < gift.age;
+        const age = item.ageFrom <= gift.age && item.ageTo >= gift.age;
+        console.log(job, sex, age);
         return job && sex && age;
       })
     );

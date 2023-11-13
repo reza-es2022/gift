@@ -7,11 +7,11 @@ export async function createGift(gift) {
 
   if (error) {
     console.error(error);
-    throw new Error("failed to fetch jobs from server");
+    throw new Error("failed to create new gift");
   }
 }
 
-export async function getGifts(giftFilters) {
+export async function getGifts() {
   // let query = supabase.from("gifts").select("*");
 
   // if (giftFilters.sex) query.eq("sex", giftFilters.sex);

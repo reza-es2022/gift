@@ -5,8 +5,10 @@ import { Toaster } from "react-hot-toast";
 const initalGift = {
   job: "",
   name: "",
-  age: 18,
+  ageFrom: "",
+  ageTo: "",
   sex: "",
+  age: "18",
 };
 
 export const GiftContext = createContext();

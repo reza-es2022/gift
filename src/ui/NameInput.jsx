@@ -7,7 +7,7 @@ function NameInput() {
   const { gift, setGift } = useContext(GiftContext);
 
   return (
-    <div className="flex items-center gap-4 col-span-3">
+    <div className="flex items-center gap-4 col-span-4">
       <Label htmlFor="age">Name:</Label>
       <input
         className=" px-2 py-1  border-b border-pink-400

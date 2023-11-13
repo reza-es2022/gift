@@ -11,7 +11,7 @@ import { createGift as createGiftApi } from "../../services/giftsApi";
 import Spinner from "../../ui/Spinner";
 
 function CreateGiftForm() {
-  const { gift } = useContext(GiftContext);
+  const { gift, setGift } = useContext(GiftContext);
   const queryClient = useQueryClient();
   const {
     mutate: createGift,
@@ -21,6 +21,14 @@ function CreateGiftForm() {
     mutationFn: createGiftApi,
     onSuccess: () => {
       toast.success("gift added successfully");
+      setGift({
+        job: "",
+        name: "",
+        ageFrom: "",
+        ageTo: "",
+        sex: "",
+        age: "18",
+      });
     },
     onError: (error) => {
       toast.error(error.message);
@@ -34,7 +42,13 @@ function CreateGiftForm() {
     }
     if (!gift.name) return toast.error("gift name is missing");
     if (!gift.sex) return toast.error("sex input is missing");
-    if (!gift.age) return toast.error("age can'n be 0 😡");
+    if (
+      !gift.ageFrom ||
+      Number(gift.ageFrom) < 0 ||
+      !gift.ageTo ||
+      Number(gift.ageTo) < Number(gift.ageFrom)
+    )
+      return toast.error("invalid age input 😡");
 
     // Create gift
     createGift(gift);
@@ -45,11 +59,12 @@ function CreateGiftForm() {
       <h2 className="font-semibold text-xl mb-10 col-span-2">
         help us by creating new gifts
       </h2>
-      <div className="col-span-2 grid grid-cols-3 h-full grid-rows-[auto_1fr] gap-y-8  items-start">
+      <div className="col-span-2 grid grid-cols-4 h-full grid-rows-[auto_1fr] gap-y-8  items-start">
         <NameInput />
         <JobInput />
         <SexInput />
-        <AgeInput />
+        <AgeInput placeholder="from" />
+        <AgeInput placeholder="to" />
         {isLoading && (
           <div>
             <Spinner />

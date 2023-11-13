@@ -23,7 +23,7 @@ function GiftInputs() {
     >
       <JobInput />
       <SexInput />
-      <AgeInput />
+      <AgeInput ageInput={true} />
     </form>
   );
 }
